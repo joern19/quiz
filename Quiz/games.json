@@ -1,0 +1,26 @@
+{
+  "testGame": {
+    "question-count": 2,
+    "questions": [
+      {
+        "name": "Wie alt ist Jörn?",
+        "type": 0,
+        "a1": "10",
+        "a2": "16",
+        "a3": "14",
+        "a4": "13",
+        "correct": "3",
+        "points": 2
+      },
+      {
+        "name": "Was ist die Hauptstadt von Deutschland?",
+        "type": 1,
+        "correct": "Berlin",
+        "points": 10
+      }
+    ]
+  },
+  "southAfrica": [
+
+  ]
+}

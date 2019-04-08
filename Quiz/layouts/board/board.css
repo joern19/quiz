@@ -1,0 +1,22 @@
+﻿body {
+    background-color: black;
+    color: white;
+}
+#scoreboard {
+    border: 2px solid green;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#scoreboard > tbody > tr > td {
+    border: 2px solid green;
+    text-align: center;
+}
+
+#scoreboard > tbody > tr > th {
+    color: black;
+    background-color: gray;
+    border: 2px solid green;
+}
+
+#scoreboard > tbody > tr:nth-child(even) {background-color: #333333;}

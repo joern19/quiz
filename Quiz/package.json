@@ -1,0 +1,12 @@
+{
+  "name": "quiz",
+  "version": "0.0.1",
+  "description": "Ein Quiz f�r die Klasse oder eine Gruppe in einem Raum.",
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  },
+  "main": "server.js",
+  "author": {
+    "name": "joern19"
+  }
+}

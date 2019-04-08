@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <title>Control Page</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/control/layouts/main.js"></script>
+</head>
+<body onload="login()">
+    <div id="gameStart" style="display: none;">
+        <select id="games"></select>
+        <button onclick="startQuiz()">Starte dass Quiz</button>
+    </div>
+    <div>
+        <textarea id="question" readonly></textarea>
+        <button style="display: none;" onclick="nextRound()">N&auml;chste Runde</button>
+    </div>
+</body>
+</html>
