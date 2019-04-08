@@ -15,7 +15,27 @@ socket.on('games', function (games) {
     gameStart.style.display = 'block';
 });
 
-socket.on('');
+socket.on('join', function (name) {
+    var ul = document.getElementById("list");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(name));
+    var input = document.createElement("input");
+    input.type = "number";
+    input.min = "0";
+    input.id = name + "_input";
+    li.appendChild(input);
+    var input = document.createElement("input");
+    input.type = "button";
+    input.value = "OK!";
+    input.onclick = "modifyStudent(" + name + ")";
+    li.appendChild(input);
+    li.setAttribute("id", name); // added line
+    ul.appendChild(li);
+});
+
+function modifyStudent(name) {
+    alert(name);
+}
 
 function startQuiz() {
     var gameStart = document.getElementById("gameStart");

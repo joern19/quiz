@@ -40,6 +40,10 @@ socket.on('correct', function () {
     document.getElementById("correct").style.display = 'block';
 });
 
+socket.on('kick', function () {
+    window.location = window.location.href;
+});
+
 function answer(buttonID) {
     sleep(200).then(() => {
         hide();

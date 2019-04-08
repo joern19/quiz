@@ -11,9 +11,10 @@
         <select id="games"></select>
         <button onclick="startQuiz()">Starte dass Quiz</button>
     </div>
-    <div>
-        <textarea id="question" readonly></textarea>
-        <button style="display: none;" onclick="nextRound()">N&auml;chste Runde</button>
+    <button style="display: none;" id="nextRound" onclick="nextRound()">N&auml;chste Runde</button>
+    <div style="display: none;" id="pointManager">
+        <ul id="list" style="list-style-type:none;">
+        </ul>
     </div>
 </body>
 </html>

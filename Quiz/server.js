@@ -92,9 +92,16 @@ io.sockets.on('connection', function (socket) {
         console.log("A board connected. (" + boards.length + ")");
     });
     socket.on('login', function (name) {
+        for (var student of students) {
+            if (student[1] == name) {
+                socket.emit('kick');
+                return;
+            }
+        }
         students.push([socket, name, 0]);
         console.log(name + " logged in. (" + students.length + ")");
         sendStudents(students);
+        controller.emit('join', name);
     });
     socket.on('disconnect', function () {
         var i = getNameBySocketAndRemove(students, socket);
@@ -139,11 +146,7 @@ io.sockets.on('connection', function (socket) {
         }
     });
     socket.on('startQuiz', function (gameName) {
-        try {
-            loadAndSendQuestion(gameName);
-        } catch (err) {
-            console.log(err);
-        }
+        loadAndSendQuestion(gameName);
     });
 });
 
@@ -179,7 +182,6 @@ function loadAndSendQuestion(gameName) {
 
 function sendStudents(students) {
     var arr = [];
-
     for (var student of students) {
         var newStudent = [];
         newStudent.push(student[1]);
@@ -190,12 +192,9 @@ function sendStudents(students) {
         arr.sort(function (a, b) {
             return a[1] - b[1];
         });
+        arr.reverse();
         for (var i = 0; i < boards.length; i++) {
-            try {
-                boards[i].emit('scoreboard', arr);
-            } catch (err) {
-                console.log(err);
-            }
+            boards[i].emit('scoreboard', arr);
         }
     }
 }
