@@ -1,22 +1,46 @@
 {
   "testGame": {
-    "question-count": 2,
+    "question-count": 4,
     "questions": [
       {
-        "name": "Wie alt ist Jörn?",
+        "name": "Wann wurde Jörn geboren?",
         "type": 0,
-        "a1": "10",
-        "a2": "16",
-        "a3": "14",
-        "a4": "13",
-        "correct": "3",
+        "a1": "2004",
+        "a2": "2005",
+        "a3": "2003",
+        "a4": "2002",
+        "correct": "1",
         "points": 2
       },
       {
         "name": "Was ist die Hauptstadt von Deutschland?",
-        "type": 1,
-        "correct": "Berlin",
-        "points": 10
+        "type": 0,
+        "a1": "Berlin",
+        "a2": "Hannover",
+        "a3": "Niedersachsen",
+        "a4": "Bonn",
+        "correct": "1",
+        "points": 1
+      },
+      {
+        "name": "Wer war 2006 der/die Bundeskanzler/in von Deutschland?",
+        "type": 0,
+        "a1": "Adolf Hitler",
+        "a2": "Angela Merkel",
+        "a3": "Angeler Merkel",
+        "a4": "Angelika Merckel",
+        "correct": "2",
+        "points": 4
+      },
+      {
+        "name": "Wie viele Einwohner hat die Landeshauptstadt Hannover?",
+        "type": 0,
+        "a1": "≈1Mio.",
+        "a2": "≈10.000",
+        "a3": "≈80.000",
+        "a4": "≈500.000",
+        "correct": "4",
+        "points": 5
       }
     ]
   },
