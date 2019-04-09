@@ -21,12 +21,12 @@ function login() {
 }
 
 socket.on('scoreboard', function (data) {
-    console.log(data);
     setScoreboard(data);
 });
 
 socket.on('openQuestion', function (question) {
-    document.getElementById("question").textContent = question;
+    document.getElementById("question").textContent = question[0];
+    document.getElementById("questionIndex").textContent = question[1];
 });
 
 //var arr = [["Jens Hirschfeld", 47],["Jörn Hirschfeld", 14],["Sören Hirschfeld", 10],["Max Mustermann", 3]];
