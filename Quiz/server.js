@@ -78,6 +78,7 @@ var students = [];
 var boards = [];
 var controller;
 
+var currentQuestIndex = 0;
 var currentQuestion;
 var questionType;
 var questionLength;
@@ -101,7 +102,6 @@ io.sockets.on('connection', function (socket) {
         students.push([socket, name, 0]);
         console.log(name + " logged in. (" + students.length + ")");
         sendStudents(students);
-        controller.emit('join', name);
     });
     socket.on('disconnect', function () {
         var i = getNameBySocketAndRemove(students, socket);
@@ -126,6 +126,7 @@ io.sockets.on('connection', function (socket) {
             lockcontrol = true;
             console.log("controller connected, load/reload questions");
             loadQuestions(socket);
+            sendStudents(students);
         }
     });
     socket.on('lockin', function (answer) {
@@ -138,15 +139,27 @@ io.sockets.on('connection', function (socket) {
         for (var student of students) {
             if (student[3] == correctAnswer - 1) {
                 student[0].emit('correct');
-                student[2] += points;
+                student[2] += parseInt(points);
                 sendStudents(students);
             } else {
                 student[0].emit('wrong');
             }
         }
+        controller.emit('everybodyfinished', currentQuestIndex);
     });
-    socket.on('startQuiz', function (gameName) {
-        loadAndSendQuestion(gameName);
+    socket.on('startQuiz', function (arr) {
+        loadAndSendQuestion(arr[0], arr[1]);
+    });
+    socket.on('setPoints', function (info) {
+        if (socket == controller) {
+            for (var student of students) {
+                if (student[1] == info[0]) {
+                    student[2] = info[1];
+                    sendStudents(students);
+                    return;
+                }
+            }
+        }
     });
 });
 
@@ -161,23 +174,29 @@ function getStudentIndexBySocket(socket) {
     return null;
 }
 
-function loadAndSendQuestion(gameName) {
-    currentQuestion = questions[gameName].questions[0].name;
-    questionType = questions[gameName].questions[0].type;
-    questionLength = questions[gameName].questions[0]["question-count"];
+function loadAndSendQuestion(gameName, questIndex) {
+    currentQuestion = questions[gameName].questions[questIndex].name;
+    questionType = questions[gameName].questions[questIndex].type;
+    questionLength = questions[gameName]["question-count"];
+    if (questIndex > questionLength) {
+        console.log("There are no more Questions");
+        return;
+    }
     if (questionType == 0) {
-        answers = [questions[gameName].questions[0].a1, questions[gameName].questions[0].a2, questions[gameName].questions[0].a3, questions[gameName].questions[0].a4];
+        answers = [questions[gameName].questions[questIndex].a1, questions[gameName].questions[questIndex].a2, questions[gameName].questions[questIndex].a3, questions[gameName].questions[questIndex].a4];
     } else if (questionType == 1) {
         //todo
     }
-    correctAnswer = questions[gameName].questions[0].correct;
-    points = questions[gameName].questions[0].points;
+    correctAnswer = questions[gameName].questions[questIndex].correct;
+    points = questions[gameName].questions[questIndex].points;
     for (var student of students) {
+        student[3] = undefined;
         student[0].emit('openQuestion', [currentQuestion, questionType, questionLength, answers]);
     }
     for (var board of boards) {
-        board.emit('openQuestion', currentQuestion);
+        board.emit('openQuestion', [currentQuestion, ((questIndex + 1) + "/" + questionLength)]);
     }
+    currentQuestIndex = questIndex;
 }
 
 function sendStudents(students) {
@@ -196,5 +215,8 @@ function sendStudents(students) {
         for (var i = 0; i < boards.length; i++) {
             boards[i].emit('scoreboard', arr);
         }
+    }
+    if (controller != undefined) {
+        controller.emit('students', arr);
     }
 }
