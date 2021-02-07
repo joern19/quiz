@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Quiz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/user/style.css">
+    <script type="text/javascript" src="/user/main.js"></script>
+</head>
+<body>
+    <textarea readonly id="question"></textarea>
+    <div id="4answers" style="display: none;">
+        <button id="b0" onclick="answer(0)" style="background-color: blueviolet"></button>
+        <button id="b1" onclick="answer(1)" style="background-color: deeppink"></button>
+        <br><br>
+        <button id="b2" onclick="answer(2)" style="background-color: aqua"></button>
+        <button id="b3" onclick="answer(3)" style="background-color: khaki"></button>
+    </div>
+    <div id="textIn" style="display: none;">
+        <input id="answer" autofocus/>
+    </div>
+    <div id="checkbox" style="display: none;">
+        <input type="checkbox" name="vehicle"> The World is flat<br>
+        <input type="checkbox" name="vehicle"> Fire is hot<br>
+        <input type="submit" value="Submit">
+    </div>
+    <div id="correct" style="display: none;">
+        <h1 style="color: green;">Die Antwort war Richtig!😎</h1>
+    </div>
+    <div id="wrong" style="display: none;">
+        <h1 style="color: red;">Das war leider Falsch. Viel Glück beim nächsten mal.🍀</h1>
+    </div>
+    <div id="waiting" style="display: none;">
+        <h1 class="waiting">Warten auf alle anderen.⏲️</h1>
+    </div> 
+</body>
+</html>

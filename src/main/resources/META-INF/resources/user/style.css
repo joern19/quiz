@@ -1,0 +1,80 @@
+body {
+  background-color: black;
+}
+#question {
+  width: 100%;
+  height: 25px;
+  font-size: 20px;
+  resize: none;
+}
+button {
+  display: inline-block;
+  width: 40%;
+  height: 40vh;
+  border: 50px hidden;
+  font-size: 20px;
+  font-weight: 700;
+}
+button:focus {
+      background-color: green;
+      -webkit-animation-name: rotate;
+      -webkit-animation-duration: 100ms;
+      animation-name: rotate;
+      animation-duration: 100ms;
+  }
+
+.waiting {
+  color: red;
+  -webkit-animation-name: rgr;
+  -webkit-animation-duration: 5s;
+  animation-name: rgr;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes rgr {
+  0% {
+      color: red;
+  }
+  50% {
+      color: green;
+  }
+  100% {
+      color: red;
+  }
+}
+@keyframes rgr {
+  0% {
+      color: red;
+  }
+  50% {
+      color: green;
+  }
+  100% {
+      color: red;
+  }
+}
+@-webkit-keyframes rotate {
+  0% {
+      -ms-transform: rotate(20deg);
+      -webkit-transform: rotate(20deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -ms-transform: rotate(20deg);
+      -webkit-transform: rotate(20deg);
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+      -ms-transform: rotate(20deg);
+      -webkit-transform: rotate(20deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -ms-transform: rotate(20deg);
+      -webkit-transform: rotate(20deg);
+      transform: rotate(360deg);
+  }
+}
